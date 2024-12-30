@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     private GameObject Fish3;
     [SerializeField] UIController uiController;
     [SerializeField] private PlayerCamera playerCamera;
-    [SerializeField] private ParticleSystem levelUpEffect;
     [SerializeField] private AudioClip biteFX;
 
     [HideInInspector] public float maxExp = 2;
@@ -192,19 +191,15 @@ public class Player : MonoBehaviour
         }
     }
 
-
     public void LevelUp()
     {
         uiController.UpdateLevel(level);
-        ParticleSystem effectInstance = Instantiate(levelUpEffect, transform.position, Quaternion.identity);
-        effectInstance.transform.parent = transform;
-        float effectDuration = effectInstance.main.duration;
 
         exp -= maxExp;
         level += 1;
         maxExp = level * 2;
 
-        StartCoroutine(WaitToGrow(effectDuration));
+        GrowUp();
     }
 
     private IEnumerator WaitToGrow(float duration)

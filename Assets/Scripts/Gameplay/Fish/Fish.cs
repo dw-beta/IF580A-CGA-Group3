@@ -11,10 +11,8 @@ public class Fish : MonoBehaviour
     [SerializeField] private FishSpawner fishSpawner;
     [SerializeField] private ParticleSystem bloodSplatterEffect;
 
-
     private float score = 0;
     private Animator fishAnimator;
-
 
     void Start()
     {
